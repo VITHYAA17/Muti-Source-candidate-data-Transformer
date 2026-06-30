@@ -85,17 +85,39 @@ class ResumeParser:
 
     def parse(self, filepath: str) -> List[Candidate]:
         """
-        Parse a resume text file.
+        Parse a resume file (TXT, PDF, or DOCX).
 
         Args:
-            filepath: Path to .txt (or .pdf text-extracted) file
+            filepath: Path to the resume file
 
         Returns:
             List containing 0 or 1 Candidate objects
         """
+        import os
+        ext = os.path.splitext(filepath)[1].lower()
+        text = ""
         try:
-            with open(filepath, encoding="utf-8") as f:
-                text = f.read()
+            if ext == ".pdf":
+                import PyPDF2
+                logger.info("Extracting text from PDF resume: %s", filepath)
+                with open(filepath, "rb") as f:
+                    reader = PyPDF2.PdfReader(f)
+                    pages_text = []
+                    for page in reader.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            pages_text.append(page_text)
+                    text = "\n".join(pages_text)
+            elif ext == ".docx":
+                import docx
+                logger.info("Extracting text from Word document resume: %s", filepath)
+                doc = docx.Document(filepath)
+                paragraphs = [p.text for p in doc.paragraphs]
+                text = "\n".join(paragraphs)
+            else:
+                logger.info("Reading plain-text resume: %s", filepath)
+                with open(filepath, encoding="utf-8") as f:
+                    text = f.read()
         except FileNotFoundError:
             logger.error("Resume file not found: %s", filepath)
             return []
