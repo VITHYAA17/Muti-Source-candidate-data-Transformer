@@ -35,5 +35,9 @@ class PhoneNormalizer:
             return f"+1{digits_only}"
         elif len(digits_only) == 11 and digits_only.startswith("1"):
             return f"+{digits_only}"
+        elif len(digits_only) == 7:
+            return f"+1{digits_only}"
+        elif len(digits_only) == 8 and digits_only.startswith("1"):
+            return f"+{digits_only}"
         
         return cleaned

@@ -1,35 +1,22 @@
 """
-Candidate Merger - Merges candidate records using priority-based conflict resolution.
+Candidate Merger - Merges candidate records using ConflictResolver.
 """
-from typing import List, Dict, Optional
+from typing import List
 import uuid
-from ..models import Candidate, Location, Links, Skill, Experience, Education, Provenance
-
-# Source priorities as defined in README/DESIGN
-SOURCE_PRIORITY = {
-    "Resume": 60,
-    "ATS": 50,
-    "GitHub": 50,
-    "CSV": 50,
-    "LinkedIn": 30,
-    "Text": 10
-}
+from ..models import Candidate, Skill, Experience, Education
+from .conflict_resolver import ConflictResolver
 
 class CandidateMerger:
     """
-    Merges a list of Candidate objects representing the same person.
-    Uses priority-based merging for conflicting fields.
+    Merges duplicate Candidates. Delegates field-level resolution to ConflictResolver.
     """
+
+    def __init__(self):
+        self.conflict_resolver = ConflictResolver()
 
     def merge_candidates(self, candidates: List[Candidate]) -> Candidate:
         """
-        Merge a group of candidates.
-        
-        Args:
-            candidates: List of Candidate objects to merge
-            
-        Returns:
-            A single merged Candidate object
+        Merge duplicate Candidate profiles.
         """
         if not candidates:
             raise ValueError("Cannot merge empty candidate list")
@@ -37,10 +24,10 @@ class CandidateMerger:
         if len(candidates) == 1:
             return candidates[0]
 
-        # Sort candidates by priority (highest first)
+        # Sort candidates by source priority descending
         candidates_sorted = sorted(
             candidates, 
-            key=lambda c: SOURCE_PRIORITY.get(c.source, 0), 
+            key=lambda c: self.conflict_resolver.SOURCE_PRIORITY.get(c.source, 0), 
             reverse=True
         )
 
@@ -49,12 +36,12 @@ class CandidateMerger:
             source="Merged"
         )
 
-        # 1. Merge basic fields by priority
-        merged.full_name = self._get_priority_field(candidates_sorted, "full_name")
-        merged.headline = self._get_priority_field(candidates_sorted, "headline")
-        merged.years_experience = self._get_priority_field(candidates_sorted, "years_experience")
+        # 1. Basic properties
+        merged.full_name = self.conflict_resolver.resolve_field(candidates_sorted, "full_name")
+        merged.headline = self.conflict_resolver.resolve_field(candidates_sorted, "headline")
+        merged.years_experience = self.conflict_resolver.resolve_field(candidates_sorted, "years_experience")
 
-        # 2. Merge emails & phones (unique list preserving order of priority)
+        # 2. Lists of strings (emails & phones)
         emails = []
         phones = []
         for c in candidates_sorted:
@@ -67,17 +54,13 @@ class CandidateMerger:
         merged.emails = emails
         merged.phones = phones
 
-        # 3. Merge Location
-        merged.location = self._merge_location(candidates_sorted)
+        # 3. Location and Links
+        merged.location = self.conflict_resolver.resolve_location(candidates_sorted)
+        merged.links = self.conflict_resolver.resolve_links(candidates_sorted)
 
-        # 4. Merge Links
-        merged.links = self._merge_links(candidates_sorted)
-
-        # 5. Merge Skills
-        # Add all skills to the candidate. Candidate.add_skill already merges sources and confidence
+        # 4. Skills (Candidate.add_skill merges sources and trust)
         for c in candidates_sorted:
             for skill in c.skills:
-                # Re-create skill object to avoid modifying the original parsed candidates
                 new_skill = Skill(
                     name=skill.name,
                     confidence=skill.confidence,
@@ -85,76 +68,26 @@ class CandidateMerger:
                 )
                 merged.add_skill(new_skill)
 
-        # 6. Merge Experience
+        # 5. Experience
         merged.experience = self._merge_experience(candidates_sorted)
 
-        # 7. Merge Education
+        # 6. Education
         merged.education = self._merge_education(candidates_sorted)
 
-        # 8. Merge Provenance tracking
+        # 7. Provenance
         for c in candidates_sorted:
             for field_name, prov_list in c.provenance.items():
                 if field_name not in merged.provenance:
                     merged.provenance[field_name] = []
                 for prov in prov_list:
-                    # Avoid exact duplicate provenances
                     if prov not in merged.provenance[field_name]:
                         merged.provenance[field_name].append(prov)
 
         return merged
 
-    def _get_priority_field(self, sorted_candidates: List[Candidate], field_name: str):
-        """Get the first non-empty field value from candidates sorted by priority."""
-        for c in sorted_candidates:
-            val = getattr(c, field_name, None)
-            if val:
-                return val
-        return None
-
-    def _merge_location(self, sorted_candidates: List[Candidate]) -> Location:
-        """
-        Merge location. Take values from the highest priority candidate
-        that has location details.
-        """
-        city, region, country = None, None, None
-        for c in sorted_candidates:
-            if c.location:
-                if not city and c.location.city:
-                    city = c.location.city
-                if not region and c.location.region:
-                    region = c.location.region
-                if not country and c.location.country:
-                    country = c.location.country
-        return Location(city=city, region=region, country=country)
-
-    def _merge_links(self, sorted_candidates: List[Candidate]) -> Links:
-        """
-        Merge Links. Take primary links from highest priority, and accumulate other links.
-        """
-        linkedin, github, portfolio = None, None, None
-        other_links = []
-
-        for c in sorted_candidates:
-            if c.links:
-                if not linkedin and c.links.linkedin:
-                    linkedin = c.links.linkedin
-                if not github and c.links.github:
-                    github = c.links.github
-                if not portfolio and c.links.portfolio:
-                    portfolio = c.links.portfolio
-                for other in c.links.other:
-                    if other and other not in other_links:
-                        other_links.append(other)
-                        
-        # Ensure we don't duplicate primary links in the other list
-        primaries = {linkedin, github, portfolio}
-        other_links = [l for l in other_links if l not in primaries]
-
-        return Links(linkedin=linkedin, github=github, portfolio=portfolio, other=other_links)
-
     def _merge_experience(self, sorted_candidates: List[Candidate]) -> List[Experience]:
         """
-        Merge experience lists. Group by company + title.
+        Merge experience lists grouping by company and job title.
         """
         merged_exp: List[Experience] = []
         
@@ -163,7 +96,6 @@ class CandidateMerger:
                 if not exp.company:
                     continue
                     
-                # Look for matching company & title in already merged experience
                 match = None
                 exp_company_clean = exp.company.lower().strip()
                 exp_title_clean = (exp.title or "").lower().strip()
@@ -172,14 +104,12 @@ class CandidateMerger:
                     me_company_clean = me.company.lower().strip()
                     me_title_clean = (me.title or "").lower().strip()
                     
-                    # Match if companies match, and either titles match or one is missing
                     if me_company_clean == exp_company_clean:
                         if me_title_clean == exp_title_clean or not me_title_clean or not exp_title_clean:
                             match = me
                             break
                             
                 if match:
-                    # Update fields if empty in the current match (which is higher priority)
                     if not match.title and exp.title:
                         match.title = exp.title
                     if not match.start_date and exp.start_date:
@@ -189,7 +119,6 @@ class CandidateMerger:
                     if not match.summary and exp.summary:
                         match.summary = exp.summary
                 else:
-                    # Create a new Experience copy
                     merged_exp.append(
                         Experience(
                             company=exp.company,
@@ -203,7 +132,7 @@ class CandidateMerger:
 
     def _merge_education(self, sorted_candidates: List[Candidate]) -> List[Education]:
         """
-        Merge education lists. Group by institution + degree.
+        Merge education lists grouping by school/university and degree.
         """
         merged_edu: List[Education] = []
         

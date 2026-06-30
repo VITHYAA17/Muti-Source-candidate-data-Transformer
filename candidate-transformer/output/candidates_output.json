@@ -1,0 +1,1230 @@
+[
+  {
+    "candidate_id": "a89bab36-ab76-4344-ba7c-7134bea873d2",
+    "full_name": "John Smith",
+    "emails": [
+      "john.smith@gmail.com"
+    ],
+    "phones": [
+      "+15550101"
+    ],
+    "location": {
+      "city": "Mountain View",
+      "region": "CA",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://linkedin.com/in/johnsmith",
+      "github": "https://github.com/johnsmith",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Passionate about distributed systems and cloud computing. 10+ years experience.",
+    "years_experience": 5,
+    "skills": [
+      {
+        "name": "Java",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Python",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Go",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub"
+        ]
+      },
+      {
+        "name": "JavaScript",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub"
+        ]
+      },
+      {
+        "name": "Distributed Systems",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Cloud Architecture",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Leadership",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Google",
+        "title": "Senior Software Engineer",
+        "start": "2019-06",
+        "end": null,
+        "summary": null
+      },
+      {
+        "company": "Uber",
+        "title": "Software Engineer",
+        "start": "2016-01",
+        "end": "2019-05",
+        "summary": null
+      }
+    ],
+    "education": [
+      {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field": "Computer Science",
+        "end_year": 2015
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "full_name",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "full_name",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "full_name",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "emails",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "emails",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "emails",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "emails",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "phones",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "phones",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "location",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "location",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "location",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "location",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "experience",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "years_experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "years_experience",
+        "source": "GitHub",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "years_experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "links",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "links",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "headline",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "headline",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "skills",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "skills",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "education",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      }
+    ],
+    "overall_confidence": 0.97
+  },
+  {
+    "candidate_id": "1da1606f-bdb2-4646-b335-bc80363423fa",
+    "full_name": "Jane Doe",
+    "emails": [
+      "jane.doe@example.com"
+    ],
+    "phones": [
+      "+15550102"
+    ],
+    "location": {
+      "city": "Menlo Park",
+      "region": "CA",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://linkedin.com/in/janedoe",
+      "github": "https://github.com/janedoe",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Product-minded engineer with focus on backend systems.",
+    "years_experience": 3,
+    "skills": [
+      {
+        "name": "TypeScript",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "React",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Node.js",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub"
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub"
+        ]
+      },
+      {
+        "name": "Product Strategy",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Data Analysis",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Team Leadership",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Meta",
+        "title": "Product Manager",
+        "start": "2018-03",
+        "end": null,
+        "summary": null
+      }
+    ],
+    "education": [
+      {
+        "institution": "MIT",
+        "degree": "B.S.",
+        "field": "Business Administration",
+        "end_year": 2013
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "full_name",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "full_name",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "full_name",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "emails",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "emails",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "emails",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "emails",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "phones",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "phones",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "location",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "location",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "location",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "location",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "experience",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "years_experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "years_experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "links",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "links",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "headline",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "headline",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "skills",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "skills",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "education",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      }
+    ],
+    "overall_confidence": 0.975
+  },
+  {
+    "candidate_id": "2232a3ae-a8c8-4f30-a46e-471443c19534",
+    "full_name": "Alice Johnson",
+    "emails": [
+      "alice.johnson@company.com"
+    ],
+    "phones": [
+      "+15550103"
+    ],
+    "location": {
+      "city": "Seattle",
+      "region": "WA",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://linkedin.com/in/alicejohnson",
+      "github": "https://github.com/alicejohnson",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Cloud infrastructure expert, AWS certified. DevOps and Kubernetes specialist.",
+    "years_experience": 12,
+    "skills": [
+      {
+        "name": "Java",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub"
+        ]
+      },
+      {
+        "name": "Python",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Terraform",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 0.9,
+        "sources": [
+          "GitHub",
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "AWS",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "Devops",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      },
+      {
+        "name": "System Design",
+        "confidence": 0.7,
+        "sources": [
+          "LinkedIn"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Amazon",
+        "title": "Cloud Architect",
+        "start": "2020-01",
+        "end": null,
+        "summary": null
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Washington",
+        "degree": "M.S.",
+        "field": "Computer Engineering",
+        "end_year": 2018
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "full_name",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "full_name",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "emails",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "emails",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "emails",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "phones",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "location",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "location",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "location",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "experience",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "links",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "links",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "headline",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "headline",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "skills",
+        "source": "GitHub",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401057"
+      },
+      {
+        "field": "skills",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "years_experience",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      },
+      {
+        "field": "education",
+        "source": "LinkedIn",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.401921"
+      }
+    ],
+    "overall_confidence": 0.945
+  },
+  {
+    "candidate_id": "85178be3-d8a0-4838-b248-a58deb7ff13e",
+    "full_name": "Bob Wilson",
+    "emails": [
+      "bob@techmail.com"
+    ],
+    "phones": [
+      "+15550104"
+    ],
+    "location": {
+      "city": "Redmond",
+      "region": "WA",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://linkedin.com/in/bobwilson",
+      "github": "https://github.com/bobwilson",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "DevOps Engineer with 8+ years experience in cloud infrastructure, containerization, and automation.\nExpertise in Kubernetes, Docker, Terraform, and CI/CD pipelines.",
+    "years_experience": 8,
+    "skills": [
+      {
+        "name": "AWS",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Azure",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Google Cloud Platform",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Docker",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Helm",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Terraform",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Ansible",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Cloudformation",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Jenkins",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Github Actions",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Gitlab Ci",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Prometheus",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Grafana",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Elk Stack",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Python",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Bash",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Go",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      },
+      {
+        "name": "Mongodb",
+        "confidence": 1.0,
+        "sources": [
+          "Resume"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Microsoft",
+        "title": "DevOps Engineer",
+        "start": "2020-01",
+        "end": null,
+        "summary": null
+      },
+      {
+        "company": "TechCorp",
+        "title": "DevOps Engineer",
+        "start": "2018-01",
+        "end": "2020-01",
+        "summary": null
+      }
+    ],
+    "education": [
+      {
+        "institution": "University o",
+        "degree": "B.S.",
+        "field": "Computer Science",
+        "end_year": 2015
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "full_name",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "emails",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "emails",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "location",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "location",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "links",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "headline",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "years_experience",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "skills",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "experience",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "experience",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      },
+      {
+        "field": "education",
+        "source": "Resume",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.402921"
+      },
+      {
+        "field": "phones",
+        "source": "CSV",
+        "method": "direct_extract",
+        "extraction_date": "2026-06-30T13:31:17.398293"
+      }
+    ],
+    "overall_confidence": 0.97
+  },
+  {
+    "candidate_id": "eaf8b47b-1209-4506-b01a-192778ea5ede",
+    "full_name": "Charlie Brown",
+    "emails": [
+      "charlie.brown@company.com"
+    ],
+    "phones": [
+      "+15550105"
+    ],
+    "location": {
+      "city": "Cupertino",
+      "region": "CA",
+      "country": "US"
+    },
+    "links": null,
+    "headline": null,
+    "years_experience": 2,
+    "skills": null,
+    "experience": [
+      {
+        "company": "Apple",
+        "title": "Software Engineer",
+        "start": null,
+        "end": null,
+        "summary": null
+      }
+    ],
+    "education": null,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "emails",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "phones",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "location",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      },
+      {
+        "field": "years_experience",
+        "source": "ATS",
+        "method": "field_mapping",
+        "extraction_date": "2026-06-30T13:31:17.400267"
+      }
+    ],
+    "overall_confidence": 0.5700000000000001
+  },
+  {
+    "candidate_id": "ee183562-4d9e-4b5b-a3bf-120f5d7df951",
+    "full_name": "David Lee",
+    "emails": [
+      "david.lee@gmail.com"
+    ],
+    "phones": null,
+    "location": {
+      "city": "San Jose",
+      "region": "CA",
+      "country": "US"
+    },
+    "links": null,
+    "headline": "David is a talented full-stack engineer with 7 years of experience",
+    "years_experience": 7,
+    "skills": [
+      {
+        "name": "Java",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Python",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Go",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Microservices",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Docker",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "AWS",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "System Design",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "Apache Kafka",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "confidence": 0.5,
+        "sources": [
+          "Text"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "N",
+        "title": "working as a Senior Backend Engineer",
+        "start": null,
+        "end": null,
+        "summary": null
+      },
+      {
+        "company": "s",
+        "title": "Software Engineer",
+        "start": null,
+        "end": null,
+        "summary": null
+      }
+    ],
+    "education": null,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.403691"
+      },
+      {
+        "field": "emails",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.403691"
+      },
+      {
+        "field": "location",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.403691"
+      },
+      {
+        "field": "years_experience",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.403691"
+      },
+      {
+        "field": "skills",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.404394"
+      },
+      {
+        "field": "experience",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.404394"
+      },
+      {
+        "field": "headline",
+        "source": "Text",
+        "method": "regex_parse",
+        "extraction_date": "2026-06-30T13:31:17.404394"
+      }
+    ],
+    "overall_confidence": 0.315
+  }
+]
