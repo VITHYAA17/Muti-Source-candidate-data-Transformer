@@ -1,0 +1,30 @@
+RECRUITER NOTES
+
+Candidate: David Lee
+Email: david.lee@gmail.com
+Phone: +1-555-0106
+Location: San Jose, California
+
+Summary:
+David is a talented full-stack engineer with 7 years of experience. Currently working as a Senior Backend Engineer at Netflix.
+Strong skills in Java, Python, and distributed systems. Has experience with microservices architecture and cloud-native technologies.
+
+Experience:
+- Currently: Senior Backend Engineer at Netflix (2021-Present)
+- Previous: Backend Engineer at LinkedIn (2018-2021)
+- Earlier: Software Engineer at startup (2016-2018)
+
+Skills:
+Java, Python, Go, Microservices, Kubernetes, Docker, AWS, System Design, Apache Kafka, PostgreSQL
+
+Education:
+BS Computer Science from UC Berkeley (2015)
+
+Notes from interview:
+- Very articulate about system design
+- Has good experience with event-driven architectures
+- Interested in backend infrastructure roles
+- Available for immediate start
+- Salary expectation: $250-300k
+
+Recommended for: Senior Backend Engineer, Staff Engineer, Platform Engineer roles

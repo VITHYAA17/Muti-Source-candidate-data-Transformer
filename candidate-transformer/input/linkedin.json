@@ -1,0 +1,91 @@
+{
+  "candidates": [
+    {
+      "name": "John Smith",
+      "email": "john.smith@gmail.com",
+      "headline": "Senior Software Engineer at Google | Distributed Systems",
+      "profile_url": "https://linkedin.com/in/johnsmith",
+      "skills": ["Distributed Systems", "Cloud Architecture", "Java", "Python", "Leadership"],
+      "location": "San Francisco, CA",
+      "current_company": "Google",
+      "current_title": "Senior Software Engineer",
+      "years_experience": 10,
+      "experience": [
+        {
+          "company": "Google",
+          "title": "Senior Software Engineer",
+          "start_date": "2019-06-01",
+          "end_date": null
+        },
+        {
+          "company": "Uber",
+          "title": "Software Engineer",
+          "start_date": "2016-01-01",
+          "end_date": "2019-05-31"
+        }
+      ],
+      "education": [
+        {
+          "institution": "Stanford University",
+          "degree": "B.S.",
+          "field": "Computer Science",
+          "graduation_year": 2015
+        }
+      ]
+    },
+    {
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "headline": "Product Manager at Meta | Building Platforms",
+      "profile_url": "https://linkedin.com/in/janedoe",
+      "skills": ["Product Strategy", "React", "Data Analysis", "TypeScript", "Team Leadership"],
+      "location": "San Francisco, CA",
+      "current_company": "Meta",
+      "current_title": "Product Manager",
+      "years_experience": 8,
+      "experience": [
+        {
+          "company": "Meta",
+          "title": "Product Manager",
+          "start_date": "2018-03-01",
+          "end_date": null
+        }
+      ],
+      "education": [
+        {
+          "institution": "MIT",
+          "degree": "B.S.",
+          "field": "Business Administration",
+          "graduation_year": 2013
+        }
+      ]
+    },
+    {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@company.com",
+      "headline": "Cloud Architect at Amazon | AWS Certified",
+      "profile_url": "https://linkedin.com/in/alicejohnson",
+      "skills": ["AWS", "Kubernetes", "Terraform", "DevOps", "Python", "System Design"],
+      "location": "Seattle, WA",
+      "current_company": "Amazon",
+      "current_title": "Cloud Architect",
+      "years_experience": 12,
+      "experience": [
+        {
+          "company": "Amazon",
+          "title": "Cloud Architect",
+          "start_date": "2020-01-01",
+          "end_date": null
+        }
+      ],
+      "education": [
+        {
+          "institution": "University of Washington",
+          "degree": "M.S.",
+          "field": "Computer Engineering",
+          "graduation_year": 2018
+        }
+      ]
+    }
+  ]
+}

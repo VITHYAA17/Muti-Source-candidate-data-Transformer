@@ -1,0 +1,49 @@
+RESUME
+
+Name: Bob Wilson
+Email: bob@techmail.com
+Phone: (555) 0104
+Location: Redmond, WA
+
+PROFESSIONAL SUMMARY
+DevOps Engineer with 8+ years experience in cloud infrastructure, containerization, and automation.
+Expertise in Kubernetes, Docker, Terraform, and CI/CD pipelines.
+
+PROFESSIONAL EXPERIENCE
+
+Microsoft - DevOps Engineer (2020-Present)
+Redmond, WA
+- Managed Kubernetes clusters for microservices deployment
+- Automated infrastructure using Terraform and Ansible
+- Implemented CI/CD pipelines with Jenkins and GitHub Actions
+- Skills: Kubernetes, Docker, Terraform, CI/CD, Jenkins, GitHub Actions, Azure
+
+TechCorp - DevOps Engineer (2018-2020)
+San Francisco, CA
+- Built and maintained cloud infrastructure on AWS
+- Implemented monitoring and logging solutions
+- Skills: AWS, Docker, Kubernetes, Prometheus, ELK Stack
+
+TECHNICAL SKILLS
+- Cloud Platforms: AWS, Azure, Google Cloud Platform
+- Containerization: Docker, Kubernetes, Helm
+- Infrastructure as Code: Terraform, Ansible, CloudFormation
+- CI/CD: Jenkins, GitHub Actions, GitLab CI
+- Monitoring: Prometheus, Grafana, ELK Stack
+- Languages: Python, Bash, Go
+- Databases: PostgreSQL, MongoDB
+
+EDUCATION
+B.S. Computer Science
+University of Washington, Seattle, WA
+Graduated: 2015
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect - Associate (2021)
+- Certified Kubernetes Administrator (2022)
+
+CONTACT
+Email: bob@techmail.com
+Phone: (555) 0104
+LinkedIn: linkedin.com/in/bobwilson
+GitHub: github.com/bobwilson

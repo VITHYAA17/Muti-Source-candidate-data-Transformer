@@ -1,0 +1,101 @@
+{
+  "fields": [
+    {
+      "path": "candidate_id",
+      "type": "string",
+      "required": false
+    },
+    {
+      "path": "full_name",
+      "type": "string",
+      "required": true
+    },
+    {
+      "path": "emails",
+      "type": "string[]",
+      "required": true
+    },
+    {
+      "path": "phones",
+      "type": "string[]",
+      "required": false,
+      "normalize": "E.164"
+    },
+    {
+      "path": "location",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "city": "string",
+        "region": "string",
+        "country": "string"
+      }
+    },
+    {
+      "path": "links",
+      "type": "object",
+      "required": false
+    },
+    {
+      "path": "headline",
+      "type": "string",
+      "required": false
+    },
+    {
+      "path": "years_experience",
+      "type": "number",
+      "required": false
+    },
+    {
+      "path": "skills",
+      "type": "array",
+      "required": false,
+      "items": {
+        "name": "string",
+        "confidence": "number",
+        "sources": "string[]"
+      }
+    },
+    {
+      "path": "experience",
+      "type": "array",
+      "required": false,
+      "items": {
+        "company": "string",
+        "title": "string",
+        "start": "string",
+        "end": "string",
+        "summary": "string"
+      }
+    },
+    {
+      "path": "education",
+      "type": "array",
+      "required": false,
+      "items": {
+        "institution": "string",
+        "degree": "string",
+        "field": "string",
+        "end_year": "number"
+      }
+    },
+    {
+      "path": "provenance",
+      "type": "array",
+      "required": false,
+      "items": {
+        "field": "string",
+        "source": "string",
+        "method": "string"
+      }
+    },
+    {
+      "path": "overall_confidence",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "include_provenance": true,
+  "include_confidence": true,
+  "on_missing": "null"
+}

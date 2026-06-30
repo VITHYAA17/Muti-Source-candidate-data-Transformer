@@ -1,0 +1,34 @@
+{
+  "candidates": [
+    {
+      "candidate_name": "John Smith",
+      "contact_email": "john.smith@gmail.com",
+      "contact_phone": "+1-555-0101",
+      "current_employer": "Google",
+      "job_title": "Senior Software Engineer",
+      "location_city": "Mountain View",
+      "location_state": "CA",
+      "years_at_company": 5
+    },
+    {
+      "candidate_name": "Jane Doe",
+      "contact_email": "jane.doe@example.com",
+      "contact_phone": "555-0102",
+      "current_employer": "Meta",
+      "job_title": "Product Manager",
+      "location_city": "Menlo Park",
+      "location_state": "CA",
+      "years_at_company": 3
+    },
+    {
+      "candidate_name": "Charlie Brown",
+      "contact_email": "charlie.brown@company.com",
+      "contact_phone": "+1-555-0105",
+      "current_employer": "Apple",
+      "job_title": "Software Engineer",
+      "location_city": "Cupertino",
+      "location_state": "CA",
+      "years_at_company": 2
+    }
+  ]
+}

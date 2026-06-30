@@ -1,0 +1,34 @@
+{
+  "candidates": [
+    {
+      "name": "John Smith",
+      "email": "john.smith@gmail.com",
+      "bio": "Passionate about distributed systems and cloud computing. 10+ years experience.",
+      "languages": ["Java", "Python", "Go", "JavaScript"],
+      "github_url": "https://github.com/johnsmith",
+      "location": "San Francisco, CA",
+      "company": "Google",
+      "repositories_count": 45
+    },
+    {
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "bio": "Product-minded engineer with focus on backend systems.",
+      "languages": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+      "github_url": "https://github.com/janedoe",
+      "location": "San Francisco, CA",
+      "company": "Meta",
+      "repositories_count": 28
+    },
+    {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@company.com",
+      "bio": "Cloud infrastructure expert, AWS certified. DevOps and Kubernetes specialist.",
+      "languages": ["Java", "Python", "Terraform", "Kubernetes"],
+      "github_url": "https://github.com/alicejohnson",
+      "location": "Seattle, WA",
+      "company": "Amazon",
+      "repositories_count": 35
+    }
+  ]
+}
