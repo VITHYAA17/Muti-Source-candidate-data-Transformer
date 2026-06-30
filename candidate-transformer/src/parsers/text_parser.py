@@ -40,7 +40,7 @@ _LOCATION_RE = re.compile(r"^Location[:\s]+(.+)$", re.IGNORECASE | re.MULTILINE)
 
 # "Currently: Senior Backend Engineer at Netflix (2021-Present)"
 _CURRENT_JOB_RE = re.compile(
-    r"Currently[:\s]+(?P<title>.+?)\s+at\s+(?P<company>.+?)(?:\s+\((?P<start>\d{4})",
+    r"Currently[:\s]+(?P<title>.+?)\s+at\s+(?P<company>.+?)(?:\s+\((?P<start>\d{4})[-–]?(?P<end>Present|\d{4})?\))?",
     re.IGNORECASE,
 )
 
