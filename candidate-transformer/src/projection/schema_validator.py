@@ -1,7 +1,8 @@
 """
-Schema Validator - Validates candidate dictionaries against configuration schema.
+Schema Validator - Validates candidate dictionaries against OutputConfig rules.
 """
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
+from .output_config import OutputConfig
 
 class ValidationError(Exception):
     """Exception raised when candidate data does not conform to the schema."""
@@ -9,13 +10,12 @@ class ValidationError(Exception):
 
 class SchemaValidator:
     """
-    Validates projected candidate dictionaries against output schema rules.
-    Checks types, required fields, and structural constraints.
+    Validates projected candidate dictionaries against output config rules.
     """
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: OutputConfig):
         """
-        Initialize the validator with output config.
+        Initialize the validator with OutputConfig.
         """
         self.config = config
 
@@ -24,7 +24,7 @@ class SchemaValidator:
         Validate a candidate dictionary.
         Raises ValidationError if any check fails.
         """
-        fields_config = self.config.get("fields", [])
+        fields_config = self.config.fields
         
         for f_cfg in fields_config:
             path = f_cfg.get("path")
@@ -92,7 +92,6 @@ class SchemaValidator:
     def _validate_nested_object(self, obj: Dict[str, Any], schema: Dict[str, Any], parent_path: str) -> None:
         """Helper to validate keys inside nested dicts against type rules."""
         for prop_name, prop_type in schema.items():
-            # If the schema value is a string describing the type (e.g. "string" or "number")
             if isinstance(prop_type, str):
                 val = obj.get(prop_name)
                 if val is None:

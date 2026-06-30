@@ -1,72 +1,68 @@
 """
-Output Projector - Transforms canonical Candidate objects into JSON-ready dictionaries based on runtime configuration.
+Output Projector - Transforms canonical Candidate objects using OutputConfig.
 """
-import json
-import logging
-from typing import Any, Dict, List, Optional, Union
+import re
+from typing import Any, Dict, List, Union
 from ..models import Candidate
-
-logger = logging.getLogger(__name__)
+from .output_config import OutputConfig
+from .schema_validator import ValidationError
+from ..normalizers import PhoneNormalizer, SkillNormalizer
 
 class OutputProjector:
     """
-    Applies projection rules from a configuration file/dictionary to Candidates.
-    Controls which fields are returned, their names, and inclusion of metadata.
+    Applies projection rules from an OutputConfig to Candidate profiles.
+    Supports field remapping (using the "from" property), per-field normalization,
+    and missing values behavior (null, omit, or error).
     """
 
-    def __init__(self, config_source: Union[str, Dict[str, Any]]):
+    def __init__(self, config: OutputConfig):
         """
         Initialize the projector.
-        
-        Args:
-            config_source: Path to JSON config file or config dictionary
         """
-        if isinstance(config_source, str):
-            try:
-                with open(config_source, "r", encoding="utf-8") as f:
-                    self.config = json.load(f)
-            except Exception as e:
-                logger.error("Failed to load output config from %s: %s", config_source, e)
-                # Fallback empty config
-                self.config = {"fields": [], "include_provenance": True, "include_confidence": True, "on_missing": "null"}
-        else:
-            self.config = config_source
+        self.config = config
+        self.phone_normalizer = PhoneNormalizer()
+        self.skill_normalizer = SkillNormalizer()
 
     def project(self, candidate: Candidate) -> Dict[str, Any]:
         """
-        Project a single candidate object into a dictionary.
-        
-        Args:
-            candidate: Candidate object to project
-            
-        Returns:
-            Projected dictionary representing the candidate
+        Project a single Candidate object into a dictionary.
         """
         output = {}
-        fields_config = self.config.get("fields", [])
-        include_provenance = self.config.get("include_provenance", True)
-        include_confidence = self.config.get("include_confidence", True)
-        on_missing = self.config.get("on_missing", "null")
+        fields_config = self.config.fields
+        include_provenance = self.config.include_provenance
+        include_confidence = self.config.include_confidence
+        on_missing = self.config.on_missing
 
         for f_cfg in fields_config:
             path = f_cfg.get("path")
+            source_path = f_cfg.get("from")
+            required = f_cfg.get("required", False)
+            norm_type = f_cfg.get("normalize")
+
             if not path:
                 continue
 
-            # Skip provenance/confidence if globally disabled
+            # Skip metadata fields if globally disabled
             if path == "provenance" and not include_provenance:
                 continue
             if path == "overall_confidence" and not include_confidence:
                 continue
 
-            # Extract raw value
-            val = self._extract_value(candidate, path)
+            # 1. Resolve raw value from source path or path
+            lookup_path = source_path if source_path else path
+            val = self._resolve_path(candidate, lookup_path)
 
-            # Handle missing fields
+            # 2. Apply per-field normalization if specified
+            if val and norm_type:
+                val = self._apply_normalization(val, norm_type)
+
+            # 3. Handle missing values
             if self._is_empty(val):
-                if on_missing == "omit":
+                if required or on_missing == "error":
+                    raise ValidationError(f"Required projected field '{path}' is missing or empty")
+                elif on_missing == "omit":
                     continue
-                else:
+                else:  # "null" is default
                     output[path] = None
                     continue
 
@@ -78,17 +74,62 @@ class OutputProjector:
         """Project a list of candidate objects."""
         return [self.project(c) for c in candidates]
 
-    def _extract_value(self, candidate: Candidate, path: str) -> Any:
-        """Helper to extract nested value from Candidate based on path name."""
-        if path == "candidate_id":
-            return candidate.candidate_id
-        elif path == "full_name":
-            return candidate.full_name
-        elif path == "emails":
-            return candidate.emails
-        elif path == "phones":
-            return candidate.phones
-        elif path == "location":
+    def _resolve_path(self, candidate: Candidate, path: str) -> Any:
+        """
+        Extracts values based on direct/nested/indexed paths.
+        E.g., "emails[0]"
+        E.g., "skills[].name"
+        E.g., "location.city"
+        """
+        if not path:
+            return None
+
+        # 1. Array index lookup like "emails[0]" or "phones[0]"
+        match_idx = re.match(r"^(\w+)\[(\d+)\]$", path)
+        if match_idx:
+            attr = match_idx.group(1)
+            idx = int(match_idx.group(2))
+            val_list = getattr(candidate, attr, None)
+            if val_list and isinstance(val_list, list) and len(val_list) > idx:
+                return val_list[idx]
+            return None
+
+        # 2. Nested array mapping like "skills[].name"
+        if "[]" in path:
+            parts = path.split("[].")
+            base_attr = parts[0]
+            sub_attr = parts[1] if len(parts) > 1 else None
+            
+            base_val = getattr(candidate, base_attr, None)
+            if not base_val or not isinstance(base_val, list):
+                return []
+                
+            if sub_attr:
+                mapped_list = []
+                for item in base_val:
+                    # Check if it has the attribute (e.g. s.name)
+                    if hasattr(item, sub_attr):
+                        mapped_list.append(getattr(item, sub_attr))
+                    elif isinstance(item, dict) and sub_attr in item:
+                        mapped_list.append(item[sub_attr])
+                return mapped_list
+            return base_val
+
+        # 3. Nested object path like "location.city"
+        if "." in path:
+            parts = path.split(".")
+            val = candidate
+            for p in parts:
+                if hasattr(val, p):
+                    val = getattr(val, p)
+                elif isinstance(val, dict) and p in val:
+                    val = val[p]
+                else:
+                    return None
+            return val
+
+        # 4. Standard mapping for structured model conversions
+        if path == "location":
             if candidate.location and (candidate.location.city or candidate.location.region or candidate.location.country):
                 return candidate.location.to_dict()
             return None
@@ -96,10 +137,6 @@ class OutputProjector:
             if candidate.links and (candidate.links.linkedin or candidate.links.github or candidate.links.portfolio or candidate.links.other):
                 return candidate.links.to_dict()
             return None
-        elif path == "headline":
-            return candidate.headline
-        elif path == "years_experience":
-            return candidate.years_experience
         elif path == "skills":
             return [s.to_dict() for s in candidate.skills] if candidate.skills else []
         elif path == "experience":
@@ -107,20 +144,42 @@ class OutputProjector:
         elif path == "education":
             return [ed.to_dict() for ed in candidate.education] if candidate.education else []
         elif path == "provenance":
-            # Flatten dict to list
             prov_list = []
             for plist in candidate.provenance.values():
                 for p in plist:
                     prov_list.append(p.to_dict())
             return prov_list
-        elif path == "overall_confidence":
-            return candidate.overall_confidence
+
+        # Direct attribute lookup
+        if hasattr(candidate, path):
+            return getattr(candidate, path)
+            
         return None
+
+    def _apply_normalization(self, val: Any, norm_type: str) -> Any:
+        """Applies normalization of type E164 or canonical to strings/lists."""
+        norm_type_clean = norm_type.replace(".", "").lower() # e.g. E.164 -> e164
+        
+        if norm_type_clean == "e164":
+            if isinstance(val, list):
+                return [self.phone_normalizer.normalize(x) for x in val if x]
+            elif isinstance(val, str):
+                return self.phone_normalizer.normalize(val)
+                
+        elif norm_type_clean == "canonical":
+            if isinstance(val, list):
+                return [self.skill_normalizer.normalize(x) for x in val if x]
+            elif isinstance(val, str):
+                return self.skill_normalizer.normalize(val)
+                
+        return val
 
     def _is_empty(self, val: Any) -> bool:
         """Check if value is missing/empty."""
         if val is None:
             return True
         if isinstance(val, (list, dict)) and not val:
+            return True
+        if isinstance(val, str) and not val.strip():
             return True
         return False

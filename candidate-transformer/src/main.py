@@ -15,7 +15,7 @@ from src.parsers import CsvParser, JsonParser, GitHubParser, LinkedInParser, Res
 from src.normalizers import CandidateNormalizer
 from src.merger import CandidateMatcher, CandidateMerger
 from src.confidence import ConfidenceCalculator
-from src.projection import OutputProjector, SchemaValidator
+from src.projection import OutputConfig, OutputProjector, SchemaValidator
 
 # Set up logging to stdout
 logging.basicConfig(
@@ -79,7 +79,7 @@ def run_etl():
     merger = CandidateMerger()
 
     groups = matcher.match_candidates(raw_candidates)
-    logger.info("Matched into %d unique candidate profiles from %d groups", len(groups), len(groups))
+    logger.info("Matched into %d unique candidate profiles", len(groups))
 
     merged_candidates = []
     for idx, group in enumerate(groups, start=1):
@@ -99,12 +99,8 @@ def run_etl():
         logger.error("Output configuration file not found at %s. Exiting.", config_path)
         return
 
-    try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            config = json.load(f)
-    except Exception as e:
-        logger.error("Failed to load config file: %s. Exiting.", e)
-        return
+    # Load configuration wrapper
+    config = OutputConfig(config_path)
 
     projector = OutputProjector(config)
     projected_profiles = projector.project_all(merged_candidates)
@@ -117,8 +113,6 @@ def run_etl():
         logger.info("Schema validation passed successfully for all profiles!")
     except Exception as e:
         logger.error("Schema validation failed: %s", e)
-        # We log the warning but continue to save so we can inspect what was wrong
-        # as per "Never crash" requirement, unless we want to exit. Let's not crash.
 
     # 7. LOAD (Save final output)
     logger.info("Stage 7: Loading (saving) canonical profiles...")
@@ -128,6 +122,25 @@ def run_etl():
         logger.info("ETL pipeline complete! Final output written to: %s", output_path)
     except Exception as e:
         logger.error("Failed to write output to file: %s", e)
+
+    # 8. CUSTOM CONFIG RUN (Deliverable: default + custom config)
+    custom_config_path = os.path.join(PROJECT_ROOT, "config", "custom-config.json")
+    custom_output_path = os.path.join(PROJECT_ROOT, "output", "custom_candidates_output.json")
+    if os.path.exists(custom_config_path):
+        logger.info("Running custom configuration pass...")
+        try:
+            custom_config = OutputConfig(custom_config_path)
+            custom_projector = OutputProjector(custom_config)
+            custom_projected = custom_projector.project_all(merged_candidates)
+            
+            custom_validator = SchemaValidator(custom_config)
+            custom_validator.validate_all(custom_projected)
+            
+            with open(custom_output_path, "w", encoding="utf-8") as f:
+                json.dump(custom_projected, f, indent=2, ensure_ascii=False)
+            logger.info("Custom configuration pass complete! Custom output written to: %s", custom_output_path)
+        except Exception as e:
+            logger.error("Custom config pass failed: %s", e)
 
 if __name__ == "__main__":
     run_etl()

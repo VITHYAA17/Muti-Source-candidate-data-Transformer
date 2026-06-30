@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Data Transformer Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .btn-run {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-run:hover {
+      background-color: #059669;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    .sidebar {
+      width: 30%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .search-box {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .candidate-item {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .candidate-item:hover {
+      background-color: #f0f4ff;
+    }
+    .candidate-item.active {
+      background-color: #dbeafe;
+      border-color: #2563eb;
+    }
+    .candidate-item-title {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .candidate-item-sub {
+      color: #666;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+    .main-content {
+      width: 70%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+    .section {
+      margin-bottom: 25px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    .section-title {
+      color: #1e3a8a;
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    th {
+      background-color: #f8fafc;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    .badge-conf {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+    .badge-source {
+      background-color: #e2e8f0;
+      color: #334155;
+    }
+    .empty-message {
+      color: #666;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Candidate Data Transformer Dashboard</h1>
+    <button class="btn-run" id="btn-run">Run ETL Pipeline</button>
+  </header>
+
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <input type="text" class="search-box" id="search-box" placeholder="Search by name or skill...">
+      <div id="candidate-list">
+        <!-- Candidate cards -->
+      </div>
+    </div>
+
+    <!-- Main Panel -->
+    <div class="main-content" id="main-content">
+      <div class="empty-message" id="empty-message">
+        <h3>Select a candidate from the list to view profile details.</h3>
+      </div>
+      
+      <div id="details-view" style="display: none;">
+        <!-- Hero Details -->
+        <div class="section" style="background-color: #f8fafc; padding: 15px; border-radius: 6px;">
+          <h2 style="margin: 0 0 5px 0;" id="prof-name">John Smith</h2>
+          <div style="color: #666; font-style: italic; margin-bottom: 10px;" id="prof-headline">Senior Software Engineer</div>
+          <div class="grid-2">
+            <div>
+              <strong>Overall Confidence:</strong> <span class="badge badge-conf" id="prof-confidence">95%</span>
+            </div>
+            <div>
+              <strong>Experience:</strong> <span id="prof-experience-years">10 Years</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact details -->
+        <div class="section">
+          <h3 class="section-title">Contact Information</h3>
+          <p><strong>Emails:</strong> <span id="prof-emails">john@gmail.com</span></p>
+          <p><strong>Phones:</strong> <span id="prof-phones">+1-555-0101</span></p>
+          <p><strong>Location:</strong> <span id="prof-location">Mountain View, CA, US</span></p>
+          <p><strong>Links:</strong> <span id="prof-links">LinkedIn, GitHub</span></p>
+        </div>
+
+        <!-- Experience timeline -->
+        <div class="section">
+          <h3 class="section-title">Work Experience</h3>
+          <div id="prof-experience">
+            <!-- Experience entries -->
+          </div>
+        </div>
+
+        <!-- Education list -->
+        <div class="section">
+          <h3 class="section-title">Education</h3>
+          <div id="prof-education">
+            <!-- Education entries -->
+          </div>
+        </div>
+
+        <!-- Skills and Provenance -->
+        <div class="grid-2">
+          <div>
+            <h3 class="section-title">Skills</h3>
+            <div id="prof-skills" style="display:flex; flex-wrap:wrap; gap:8px;">
+              <!-- Skills tags -->
+            </div>
+          </div>
+          <div>
+            <h3 class="section-title">Data Provenance (Lineage)</h3>
+            <table id="prof-provenance">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Source</th>
+                  <th>Method</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Provenance rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let candidates = [];
+    let activeId = null;
+
+    const listContainer = document.getElementById("candidate-list");
+    const mainContent = document.getElementById("main-content");
+    const emptyMessage = document.getElementById("empty-message");
+    const detailsView = document.getElementById("details-view");
+    const searchBox = document.getElementById("search-box");
+    const btnRun = document.getElementById("btn-run");
+
+    async function loadData() {
+      try {
+        const res = await fetch("/api/candidates");
+        candidates = await res.json();
+        renderSidebar(candidates);
+        if (activeId) {
+          const match = candidates.find(c => c.candidate_id === activeId);
+          if (match) {
+            showDetails(match);
+          }
+        }
+      } catch (err) {
+        console.error("Error loading candidate data:", err);
+      }
+    }
+
+    function renderSidebar(list) {
+      listContainer.innerHTML = "";
+      if (!list || list.length === 0) {
+        listContainer.innerHTML = "<p style='color:#666; text-align:center;'>No candidates found</p>";
+        return;
+      }
+      list.forEach(c => {
+        const item = document.createElement("div");
+        item.className = "candidate-item";
+        if (activeId === c.candidate_id) {
+          item.classList.add("active");
+        }
+        
+        const score = Math.round((c.overall_confidence || 0) * 100);
+        item.innerHTML = `
+          <div class="candidate-item-title">${c.full_name || 'N/A'}</div>
+          <div class="candidate-item-sub">${c.headline || 'Profile details'}</div>
+          <div class="candidate-item-sub"><strong>Confidence:</strong> ${score}%</div>
+        `;
+        item.onclick = () => {
+          activeId = c.candidate_id;
+          document.querySelectorAll(".candidate-item").forEach(el => el.classList.remove("active"));
+          item.classList.add("active");
+          showDetails(c);
+        };
+        listContainer.appendChild(item);
+      });
+    }
+
+    function showDetails(c) {
+      emptyMessage.style.display = "none";
+      detailsView.style.display = "block";
+
+      document.getElementById("prof-name").textContent = c.full_name || "N/A";
+      document.getElementById("prof-headline").textContent = c.headline || "N/A";
+      document.getElementById("prof-confidence").textContent = `${Math.round((c.overall_confidence || 0) * 100)}%`;
+      document.getElementById("prof-experience-years").textContent = c.years_experience ? `${c.years_experience} Years` : "N/A";
+
+      document.getElementById("prof-emails").textContent = c.emails && c.emails.length > 0 ? c.emails.join(", ") : "N/A";
+      document.getElementById("prof-phones").textContent = c.phones && c.phones.length > 0 ? c.phones.join(", ") : "N/A";
+      
+      let locStr = "N/A";
+      if (c.location) {
+        locStr = [c.location.city, c.location.region, c.location.country].filter(Boolean).join(", ");
+      }
+      document.getElementById("prof-location").textContent = locStr || "N/A";
+
+      // Links
+      const linksText = [];
+      if (c.links) {
+        if (c.links.linkedin) linksText.push(`LinkedIn: ${c.links.linkedin}`);
+        if (c.links.github) linksText.push(`GitHub: ${c.links.github}`);
+        if (c.links.portfolio) linksText.push(`Portfolio: ${c.links.portfolio}`);
+        if (c.links.other) c.links.other.forEach(lnk => linksText.push(lnk));
+      }
+      document.getElementById("prof-links").textContent = linksText.length > 0 ? linksText.join(" | ") : "None";
+
+      // Experience
+      const expContainer = document.getElementById("prof-experience");
+      expContainer.innerHTML = "";
+      if (c.experience && c.experience.length > 0) {
+        c.experience.forEach(exp => {
+          const entry = document.createElement("div");
+          entry.style.marginBottom = "12px";
+          entry.innerHTML = `
+            <strong>${exp.title || 'Job Title'}</strong> at <em>${exp.company || 'Company'}</em> (${exp.start || 'N/A'} - ${exp.end || 'Present'})
+            ${exp.summary ? `<div style='font-size:0.85rem; color:#555; margin-top:4px;'>${exp.summary}</div>` : ''}
+          `;
+          expContainer.appendChild(entry);
+        });
+      } else {
+        expContainer.innerHTML = "<p style='color:#666; font-size:0.85rem;'>No experience listed</p>";
+      }
+
+      // Education
+      const eduContainer = document.getElementById("prof-education");
+      eduContainer.innerHTML = "";
+      if (c.education && c.education.length > 0) {
+        c.education.forEach(edu => {
+          const entry = document.createElement("div");
+          entry.style.marginBottom = "8px";
+          entry.innerHTML = `
+            <strong>${edu.institution || 'School'}</strong> - ${edu.degree || 'Degree'} in ${edu.field || 'Field'} (Graduated: ${edu.end_year || 'N/A'})
+          `;
+          eduContainer.appendChild(entry);
+        });
+      } else {
+        eduContainer.innerHTML = "<p style='color:#666; font-size:0.85rem;'>No education listed</p>";
+      }
+
+      // Skills
+      const skillsContainer = document.getElementById("prof-skills");
+      skillsContainer.innerHTML = "";
+      if (c.skills && c.skills.length > 0) {
+        c.skills.forEach(s => {
+          const badge = document.createElement("span");
+          badge.className = "badge";
+          badge.style.backgroundColor = "#eff6ff";
+          badge.style.color = "#1e40af";
+          badge.style.border = "1px solid #bfdbfe";
+          badge.style.padding = "4px 8px";
+          badge.style.fontSize = "0.8rem";
+          badge.textContent = `${s.name} (${Math.round(s.confidence * 100)}%)`;
+          skillsContainer.appendChild(badge);
+        });
+      } else {
+        skillsContainer.innerHTML = "<p style='color:#666; font-size:0.85rem;'>No skills listed</p>";
+      }
+
+      // Provenance
+      const provTableBody = document.querySelector("#prof-provenance tbody");
+      provTableBody.innerHTML = "";
+      if (c.provenance && c.provenance.length > 0) {
+        const sortedProv = [...c.provenance].sort((a, b) => a.field.localeCompare(b.field));
+        sortedProv.forEach(p => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td><strong>${p.field}</strong></td>
+            <td><span class="badge badge-source">${p.source}</span></td>
+            <td>${p.method}</td>
+          `;
+          provTableBody.appendChild(row);
+        });
+      } else {
+        provTableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>No provenance data</td></tr>";
+      }
+    }
+
+    // Search filter
+    searchBox.oninput = (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      if (!q) {
+        renderSidebar(candidates);
+        return;
+      }
+      const filtered = candidates.filter(c => {
+        const nameMatch = (c.full_name || "").toLowerCase().includes(q);
+        const skillMatch = c.skills && c.skills.some(s => s.name.toLowerCase().includes(q));
+        return nameMatch || skillMatch;
+      });
+      renderSidebar(filtered);
+    };
+
+    // Run ETL pipeline
+    btnRun.onclick = async () => {
+      btnRun.disabled = true;
+      btnRun.textContent = "Processing...";
+      try {
+        const res = await fetch("/api/run-etl", { method: "POST" });
+        const data = await res.json();
+        alert(data.message || "ETL Run complete!");
+        await loadData();
+      } catch (err) {
+        console.error("Error triggering ETL:", err);
+        alert("Failed to run ETL pipeline.");
+      } finally {
+        btnRun.disabled = false;
+        btnRun.textContent = "Run ETL Pipeline";
+      }
+    };
+
+    loadData();
+  </script>
+</body>
+</html>

@@ -1,28 +1,32 @@
 # Candidate Data Transformer
 
-A Python-based ETL pipeline to merge candidate data from multiple sources (CSV, ATS JSON, GitHub, LinkedIn, Resume, Text) into one clean canonical profile with provenance tracking and confidence scoring.
+A Python-based ETL pipeline to merge candidate data from multiple sources (CSV, ATS JSON, GitHub, LinkedIn, Resume, Text) into one clean canonical profile with provenance tracking, confidence scoring, runtime custom remapping/projections, and an interactive local UI dashboard.
 
 ## Overview
 
 This application transforms messy, conflicting candidate data from multiple sources into a single unified profile following a canonical schema with:
-- **Normalized formats** (E.164 phones, ISO-3166 countries, YYYY-MM dates)
-- **Provenance tracking** (where each field value came from)
-- **Confidence scoring** (how much to trust each field)
+- **Normalized formats** (E.164 phones, ISO-3166 countries, YYYY-MM dates, canonical skills)
+- **Provenance tracking** (tracks field-level data lineage)
+- **Confidence scoring** (per-field and overall profile trust scoring)
 - **Conflict resolution** (priority-based merging)
-- **Runtime configurability** (control output schema without code changes)
+- **Runtime configurability** (control output schema path selection, remapping, format normalization, and validation rules without code changes)
+- **Interactive UI Dashboard** (local dashboard to trigger pipeline runs and visualize candidate profiles and lineage)
 
 ## Project Structure
 
 ```
 candidate-transformer/
-├── README.md                    ← This file
-├── DESIGN.md                    ← Technical design
-├── requirements.txt             ← Python dependencies
+├── README.md                          ← This file
+├── DESIGN.md                          ← Technical design (Architecture and Policies)
+├── Vithyaa_2005ckv_Eightfold.pdf      ← Generated One-Page Design Document
+├── requirements.txt                   ← Python dependencies
+├── generate_pdf.py                    ← Compiles Vithyaa_2005ckv_Eightfold.pdf design document
 │
 ├── config/
-│   └── output-config.json       ← Runtime output configuration
+│   ├── output-config.json             ← Default canonical output schema configuration
+│   └── custom-config.json             ← Custom output configuration (remaps, E.164/canonical formats)
 │
-├── input/                       ← Sample input data
+├── input/                             ← Raw inputs (structured & unstructured)
 │   ├── recruiter.csv
 │   ├── ats_data.json
 │   ├── github.json
@@ -30,112 +34,31 @@ candidate-transformer/
 │   ├── resume_sample.txt
 │   └── recruiter_notes.txt
 │
-├── output/
-│   └── candidates_output.json   ← Final merged candidates
+├── output/                            ← Generated JSON formats
+│   ├── candidates_output.json         ← Standard canonical merged profile output
+│   └── custom_candidates_output.json  ← Reshaped projected custom profile output
 │
 └── src/
-    ├── main.py                  ← Entry point
-    ├── models/                  ← Data structures (Phase 1-2)
-    ├── parsers/                 ← Extract phase (Phase 3)
-    ├── normalizers/             ← Normalize phase (Phase 4)
-    ├── merger/                  ← Dedup & merge phase (Phase 5)
-    ├── confidence/              ← Confidence scoring (Phase 6)
-    ├── projection/              ← Output config (Phase 7)
-    └── util/                    ← Utilities
-└── tests/                       ← Test suite
+    ├── main.py                        ← ETL pipeline orchestrator entrypoint
+    ├── ui_server.py                   ← Lightweight web API server hosting the dashboard UI
+    ├── static/
+    │   └── index.html                 ← Interactive glassmorphic dashboard UI
+    ├── models/                        ← In-memory canonical model structures
+    ├── parsers/                       ← Multi-format extractor parsers
+    ├── normalizers/                   ← String format normalizers
+    ├── merger/                        ← Disjoint-set match and priority conflict merger
+    ├── confidence/                    ← Trust confidence scoring calculator
+    ├── projection/                    ← Schema projection and Validation layer
+    └── util/                          ← Helpers and utilities
+└── tests/                             ← Modular test suites
+    ├── test_parsers.py
+    ├── test_normalizers.py
+    ├── test_merger.py
+    ├── test_confidence.py
+    └── test_integration.py
 ```
 
-## Pipeline Flow
-
-```
-INPUT SOURCES (CSV, JSON, GitHub, LinkedIn, Resume, Text)
-        ↓
-PHASE 3: EXTRACT (Parse all sources)
-        ↓
-PHASE 4: NORMALIZE (Standardize formats)
-        ↓
-PHASE 5: DEDUP & MERGE (Combine records, resolve conflicts)
-        ↓
-PHASE 6: CONFIDENCE (Calculate trust scores)
-        ↓
-PHASE 7: OUTPUT CONFIG (Apply runtime config)
-        ↓
-PHASE 8: VALIDATE (Schema validation)
-        ↓
-CANONICAL JSON OUTPUT (candidates_output.json)
-```
-
-## Input Sources Supported
-
-### Structured Sources
-- **Recruiter CSV Export** - structured rows (name, email, phone, company, title)
-- **ATS JSON Blob** - semi-structured with field name mapping
-
-### Unstructured Sources
-- **GitHub Profile JSON** - name, bio, repositories, languages
-- **LinkedIn Profile JSON** - name, headline, experience, education, skills
-- **Resume Files** - PDF/DOCX text extraction and parsing
-- **Recruiter Notes** - free text parsing via regex
-
-## Default Output Schema
-
-The canonical profile has 13 fixed fields:
-
-```json
-{
-  "candidate_id": "string",
-  "full_name": "string",
-  "emails": ["string"],
-  "phones": ["string"],              // E.164 format
-  "location": {
-    "city": "string",
-    "region": "string",
-    "country": "string"               // ISO-3166 alpha-2
-  },
-  "links": {
-    "linkedin": "string",
-    "github": "string",
-    "portfolio": "string",
-    "other": ["string"]
-  },
-  "headline": "string | null",
-  "years_experience": "number | null",
-  "skills": [
-    {
-      "name": "string",               // canonical names
-      "confidence": "number",         // 0.0-1.0
-      "sources": ["string"]           // where extracted from
-    }
-  ],
-  "experience": [
-    {
-      "company": "string",
-      "title": "string",
-      "start": "YYYY-MM",
-      "end": "YYYY-MM",
-      "summary": "string"
-    }
-  ],
-  "education": [
-    {
-      "institution": "string",
-      "degree": "string",
-      "field": "string",
-      "end_year": "number"
-    }
-  ],
-  "provenance": [
-    {
-      "field": "string",
-      "source": "string",             // CSV, GitHub, LinkedIn, Resume, Text, ATS
-      "method": "string"              // direct_extract, regex_parse, api_call
-    }
-  ],
-  "overall_confidence": "number"      // 0.0-1.0
-}
-```
-
-## Setup
+## Setup & Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -143,7 +66,12 @@ The canonical profile has 13 fixed fields:
 
 ### Installation
 
-1. Create virtual environment:
+1. Clone and navigate to the project directory:
+```bash
+cd candidate-transformer
+```
+
+2. Create a virtual environment:
 ```bash
 python -m venv venv
 source venv/Scripts/activate  # On Windows
@@ -151,103 +79,83 @@ source venv/Scripts/activate  # On Windows
 source venv/bin/activate  # On macOS/Linux
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Running the Pipeline
+---
 
+## How to Run
+
+### 1. Run the ETL Pipeline (CLI)
+To run the full pipeline synchronously and generate both the default canonical JSON (`output/candidates_output.json`) and custom config pass (`output/custom_candidates_output.json`):
 ```bash
 python src/main.py
 ```
 
-This will:
-1. Parse all input sources
-2. Normalize all candidate data
-3. Deduplicate and merge records
-4. Calculate confidence scores
-5. Apply output configuration
-6. Validate output schema
-7. Save merged candidates to `output/candidates_output.json`
-
-## Running Tests
-
+### 2. Launch the Web UI Dashboard
+To run the web interface locally:
 ```bash
-python -m pytest tests/
+python src/ui_server.py
+```
+Open **[http://localhost:8000/](http://localhost:8000/)** in your browser. The dashboard lets you:
+* Trigger the ETL pipeline from the UI.
+* Filter candidates by name or skill search queries.
+* Inspect circular trust meters and technical skill badges.
+* Track where each field value came from dynamically in the Provenance table.
+
+### 3. Run the Modular Test Suite
+To run all 18 modular unit and integration tests:
+```bash
+python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## Configuration
+### 4. Compile the Design PDF Document
+To recompile the single-page PDF document deliverable:
+```bash
+python generate_pdf.py
+```
 
-Edit `config/output-config.json` to control output schema:
-- Select which fields to include
-- Rename fields
-- Set normalization rules
-- Toggle provenance/confidence output
+---
 
-Example:
+## Required Twist — Configurable Projection Output
+
+Our projection engine matches configuration requirements exactly. By editing the configuration in `config/custom-config.json`, you can:
+- **Reshape structure**: Use the `"from"` key to remap nested paths (e.g. `"from": "emails[0]"` mapping to `"primary_email"`, or `"from": "skills[].name"` to export skill names as list of strings).
+- **Format Normalization**: Use the `"normalize"` key under path config (e.g. `"normalize": "E.164"` for phone standardizations, or `"normalize": "canonical"` for skills).
+- **Toggle Metadata**: Enable/disable confidence and provenance objects dynamically.
+- **Graceful Nulls/Omissions/Errors**: Handled by `"on_missing"` set to `"null"` (outputs None), `"omit"` (skips keys), or `"error"` (raises `ValidationError`).
+
+Example projection output configuration (`custom-config.json`):
 ```json
 {
   "fields": [
-    {"path": "full_name", "type": "string", "required": true},
-    {"path": "phones[0]", "type": "string", "normalize": "E.164"},
-    {"path": "skills[].name", "type": "string[]"}
+    { "path": "full_name", "type": "string", "required": true },
+    { "path": "primary_email", "from": "emails[0]", "type": "string", "required": true },
+    { "path": "phone", "from": "phones[0]", "type": "string", "normalize": "E.164" },
+    { "path": "skills", "from": "skills[].name", "type": "string[]", "normalize": "canonical" }
   ],
-  "include_provenance": true,
   "include_confidence": true,
   "on_missing": "null"
 }
 ```
 
-## Conflict Resolution Strategy
+## Conflict Resolution & Confidence Metrics
 
-When the same candidate appears in multiple sources with conflicting field values, we use a priority order:
+When the same candidate appears across multiple inputs, we merge properties by tracking priorities:
+1. **Resume** (Trust 1.0)
+2. **ATS JSON** (Trust 0.9)
+3. **GitHub** (Trust 0.9)
+4. **CSV** (Trust 0.9)
+5. **LinkedIn** (Trust 0.7)
+6. **Text notes** (Trust 0.5)
 
-1. **Resume** (100% confidence) - Most detailed, manually written
-2. **ATS JSON** (90% confidence) - Structured, official
-3. **GitHub** (90% confidence) - Semi-structured, public
-4. **CSV** (90% confidence) - Structured, recruiter data
-5. **LinkedIn** (70% confidence) - User-maintained profile
-6. **Text** (50% confidence) - Free text, error-prone
-
-For example, if location conflicts:
-- CSV says: "Mountain View"
-- GitHub says: "San Francisco, CA"
-- LinkedIn says: "San Francisco, CA"
-
-Result: "San Francisco, CA" with confidence 0.9 (from GitHub/CSV, agreement bonus)
-
-## Implementation Phases
-
-- **Phase 1-2**: Core data models (Candidate, Skill, Experience, Education, Location, Links, Provenance)
-- **Phase 3**: Extract - Parse all 6 input sources
-- **Phase 4**: Normalize - Standardize formats (phones, emails, dates, skills, locations)
-- **Phase 5**: Dedup & Merge - Match same person, resolve conflicts
-- **Phase 6**: Confidence - Calculate per-field and overall confidence
-- **Phase 7**: Output Config - Apply runtime configuration
-- **Phase 8**: Validate & Test - Schema validation and testing
-
-## Sample Data
-
-The `input/` folder contains sample data:
-- `recruiter.csv` - 4 candidates
-- `ats_data.json` - 3 candidates (ATS format with different field names)
-- `github.json` - 3 candidates with skills and bio
-- `linkedin.json` - 3 candidates with experience and education
-- `resume_sample.txt` - 1 resume as text
-- `recruiter_notes.txt` - 1 free text candidate notes
-
-Sample output will be in `output/candidates_output.json`
-
-## Technical Details
-
-See [DESIGN.md](DESIGN.md) for:
-- System architecture diagram
-- Data flow details
-- Normalization rules
-- Matching algorithm
-- Confidence scoring algorithm
-- Design decisions and rationale
+Adjustments are applied dynamically:
+* **Field Agreement**: `+0.1` if the value appears identically across 2 or more sources.
+* **Regex Extraction Penalty**: `-0.1` for unstructured extractions.
+* **Normalization Bonus**: `+0.05` for successfully parsed locations/phones.
+* Min/Max bounds: `[0.0, 1.0]`.
 
 ## License
 

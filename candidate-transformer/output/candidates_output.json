@@ -1,6 +1,6 @@
 [
   {
-    "candidate_id": "a89bab36-ab76-4344-ba7c-7134bea873d2",
+    "candidate_id": "cc7404f9-376e-487b-89e2-b4f2f004a2ed",
     "full_name": "John Smith",
     "emails": [
       "john.smith@gmail.com"
@@ -103,169 +103,169 @@
         "field": "full_name",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "full_name",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "full_name",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "full_name",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.893614"
       },
       {
         "field": "emails",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "emails",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "emails",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "emails",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.893614"
       },
       {
         "field": "phones",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "phones",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "location",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "location",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "location",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "location",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "experience",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "years_experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "years_experience",
         "source": "GitHub",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "years_experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "links",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "links",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.893614"
       },
       {
         "field": "headline",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "headline",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.893614"
       },
       {
         "field": "skills",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892298"
       },
       {
         "field": "skills",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "education",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       }
     ],
     "overall_confidence": 0.97
   },
   {
-    "candidate_id": "1da1606f-bdb2-4646-b335-bc80363423fa",
+    "candidate_id": "f9b63512-bb70-41dc-bc4d-10ffda8dcc3d",
     "full_name": "Jane Doe",
     "emails": [
       "jane.doe@example.com"
@@ -361,163 +361,163 @@
         "field": "full_name",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "full_name",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "full_name",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "full_name",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "emails",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "emails",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "emails",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "emails",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "phones",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "phones",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891070"
       },
       {
         "field": "location",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "location",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "location",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "location",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "experience",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "years_experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "years_experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "links",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "links",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "headline",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "headline",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "skills",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "skills",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "education",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       }
     ],
     "overall_confidence": 0.975
   },
   {
-    "candidate_id": "2232a3ae-a8c8-4f30-a46e-471443c19534",
+    "candidate_id": "ac759761-4ecc-452c-b427-009f86ece4df",
     "full_name": "Alice Johnson",
     "emails": [
       "alice.johnson@company.com"
@@ -614,127 +614,127 @@
         "field": "full_name",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "full_name",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "full_name",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "emails",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "emails",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "emails",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "phones",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "location",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "location",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "location",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "experience",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889227"
       },
       {
         "field": "experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "links",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "links",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "headline",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "headline",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "skills",
         "source": "GitHub",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401057"
+        "extraction_date": "2026-06-30T14:25:51.892975"
       },
       {
         "field": "skills",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "years_experience",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       },
       {
         "field": "education",
         "source": "LinkedIn",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.401921"
+        "extraction_date": "2026-06-30T14:25:51.894203"
       }
     ],
     "overall_confidence": 0.945
   },
   {
-    "candidate_id": "85178be3-d8a0-4838-b248-a58deb7ff13e",
+    "candidate_id": "ca9ee48f-8af9-4de6-b43d-6c81d3f129a7",
     "full_name": "Bob Wilson",
     "emails": [
       "bob@techmail.com"
@@ -926,91 +926,91 @@
         "field": "full_name",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.894920"
       },
       {
         "field": "full_name",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889818"
       },
       {
         "field": "emails",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.895646"
       },
       {
         "field": "emails",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889818"
       },
       {
         "field": "location",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896320"
       },
       {
         "field": "location",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889818"
       },
       {
         "field": "links",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896320"
       },
       {
         "field": "headline",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896320"
       },
       {
         "field": "years_experience",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896320"
       },
       {
         "field": "skills",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896896"
       },
       {
         "field": "experience",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896896"
       },
       {
         "field": "experience",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889818"
       },
       {
         "field": "education",
         "source": "Resume",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.402921"
+        "extraction_date": "2026-06-30T14:25:51.896896"
       },
       {
         "field": "phones",
         "source": "CSV",
         "method": "direct_extract",
-        "extraction_date": "2026-06-30T13:31:17.398293"
+        "extraction_date": "2026-06-30T14:25:51.889818"
       }
     ],
     "overall_confidence": 0.97
   },
   {
-    "candidate_id": "eaf8b47b-1209-4506-b01a-192778ea5ede",
+    "candidate_id": "f6063846-4206-4d55-9dce-d6de3a94b65b",
     "full_name": "Charlie Brown",
     "emails": [
       "charlie.brown@company.com"
@@ -1042,43 +1042,43 @@
         "field": "full_name",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "emails",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "phones",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "location",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       },
       {
         "field": "years_experience",
         "source": "ATS",
         "method": "field_mapping",
-        "extraction_date": "2026-06-30T13:31:17.400267"
+        "extraction_date": "2026-06-30T14:25:51.891724"
       }
     ],
     "overall_confidence": 0.5700000000000001
   },
   {
-    "candidate_id": "ee183562-4d9e-4b5b-a3bf-120f5d7df951",
+    "candidate_id": "fd3fac48-95ae-4f4e-a10d-24bce8bdda7c",
     "full_name": "David Lee",
     "emails": [
       "david.lee@gmail.com"
@@ -1186,43 +1186,43 @@
         "field": "full_name",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.403691"
+        "extraction_date": "2026-06-30T14:25:51.898090"
       },
       {
         "field": "emails",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.403691"
+        "extraction_date": "2026-06-30T14:25:51.898697"
       },
       {
         "field": "location",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.403691"
+        "extraction_date": "2026-06-30T14:25:51.898697"
       },
       {
         "field": "years_experience",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.403691"
+        "extraction_date": "2026-06-30T14:25:51.898697"
       },
       {
         "field": "skills",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.404394"
+        "extraction_date": "2026-06-30T14:25:51.898697"
       },
       {
         "field": "experience",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.404394"
+        "extraction_date": "2026-06-30T14:25:51.898697"
       },
       {
         "field": "headline",
         "source": "Text",
         "method": "regex_parse",
-        "extraction_date": "2026-06-30T13:31:17.404394"
+        "extraction_date": "2026-06-30T14:25:51.899894"
       }
     ],
     "overall_confidence": 0.315
